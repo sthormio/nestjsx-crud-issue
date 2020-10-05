@@ -72,6 +72,14 @@ gen
 dist
 mongo
 
+yarn.lock
+package-lock.json
 
 # Docker compose ganarated files
 db-data
+
+Dockerfile
+
+package-lock.json
+
+*.sql

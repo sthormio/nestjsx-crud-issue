@@ -26,9 +26,6 @@ import { UserService } from './user.service';
 
 @Controller('users')
 @ApiTags('users')
-@UseGuards(AuthGuard, RolesGuard)
-@UseInterceptors(AuthUserInterceptor)
-@ApiBearerAuth()
 export class UserController {
     constructor(
         private _userService: UserService,
@@ -36,6 +33,9 @@ export class UserController {
     ) {}
 
     @Get('admin')
+    @UseGuards(AuthGuard, RolesGuard)
+    @UseInterceptors(AuthUserInterceptor)
+    @ApiBearerAuth()
     @Roles(RoleType.USER)
     @HttpCode(HttpStatus.OK)
     async admin(@AuthUser() user: UserEntity): Promise<string> {
@@ -45,11 +45,11 @@ export class UserController {
                 lang: 'en',
             },
         );
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return `${translation} ${user.firstName}`;
     }
 
     @Get('users')
-    @Roles(RoleType.ADMIN)
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,

@@ -8,6 +8,7 @@ import * as path from 'path';
 import { contextMiddleware } from './middlewares';
 import { AuthModule } from './modules/auth/auth.module';
 import { MathModule } from './modules/math/math.module';
+import { ProfileModule } from './modules/profile/profile.module';
 import { UserModule } from './modules/user/user.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
@@ -35,6 +36,7 @@ import { SharedModule } from './shared/shared.module';
             parser: I18nJsonParser,
             inject: [ConfigService],
         }),
+        ProfileModule,
     ],
 })
 export class AppModule implements NestModule {
