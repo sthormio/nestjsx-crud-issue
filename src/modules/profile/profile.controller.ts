@@ -60,8 +60,9 @@ export class ProfileController implements CrudController<ProfileEntity> {
             where: { username: dto.username },
         });
         if (profile) {
-            return this.service.updateOne(req, profile);
+            profile.name = 'test';
+            return this.base.updateOneBase(req, profile);
         }
-        return this.service.createOne(req, dto);
+        return this.base.createOneBase(req, dto as ProfileEntity);
     }
 }
